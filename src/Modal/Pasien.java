@@ -1,5 +1,5 @@
 
-package pbo2;
+package Modal;
 
 // @author FransiskaAW
 /* program pada kelas ini digunakan untuk memasukan , memproses dan mengirim nilai balikan berupa

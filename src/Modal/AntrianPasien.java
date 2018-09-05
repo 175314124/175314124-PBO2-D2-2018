@@ -1,5 +1,5 @@
 
-package pbo2;
+package Modal;
 
 // @author FransiskaAW
 /* program pada kelas ini digunakan untuk menyimpan dan memproses data antrian pasien.

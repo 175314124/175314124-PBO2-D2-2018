@@ -1,5 +1,5 @@
 
-package pbo2;
+package Modal;
 
 // @author FransiskaAW
 /*program ini digunakan untuk memproses dan mendeklarasikan nama dan id dari sebuah klinik*/
