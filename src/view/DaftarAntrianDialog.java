@@ -29,11 +29,11 @@ public final class DaftarAntrianDialog extends JDialog {
     public void init() {
         this.setLayout(null);
         judulLabel = new JLabel("Daftar Nama Pasien");
-        judulLabel.setBounds(15, 10, 11, 10);
+        judulLabel.setBounds(98, 10, 200, 10);
         this.add(judulLabel);
 
         namaLabel = new JLabel("Nama");
-        namaLabel.setBounds(1, 3, 4, 3);
+        namaLabel.setBounds(10, 20, 50, 25);
         this.add(namaLabel);
     }
 
