@@ -17,6 +17,6 @@ public class TestView {
         DaftarAntrianDialog test = new DaftarAntrianDialog();
         test.setSize(300, 400);
         test.setVisible(true);
-
+        System.out.println("");
     }
 }
