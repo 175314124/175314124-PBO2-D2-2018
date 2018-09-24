@@ -5,18 +5,20 @@
  */
 package view;
 
+import Model.Pasien;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
-import javax.swing.JDialog;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JRadioButton;
 import javax.swing.JTextField;
 
-/**
- *
- * @author admin
- */
-public final class DaftarAntrianDialog extends JDialog {
-
-    private JLabel judulLabel;
+public class DaftarAntrianDialog extends JFrame implements ActionListener{
+private JLabel judulLabel;
     private JLabel namaLabel;
     private JLabel AlamatLabel;
     private JLabel noRekamMedisLabel;
@@ -24,14 +26,14 @@ public final class DaftarAntrianDialog extends JDialog {
     private JTextField Alamattext;
     private JTextField noRekamMedisText;
     private JButton saveButton;
-
+   
     public DaftarAntrianDialog() {
         init();
     }
 
     public void init() {
         this.setLayout(null);
-        judulLabel = new JLabel("Daftar Nama Pasien");
+        judulLabel = new JLabel("Daftar Antrian Pasien");
         judulLabel.setBounds(98, 10, 200, 10);
         this.add(judulLabel);
 
@@ -44,20 +46,39 @@ public final class DaftarAntrianDialog extends JDialog {
         this.add(namaText);
         
         noRekamMedisLabel = new JLabel("no Rekam Medis ");
-        noRekamMedisLabel.setBounds(10, 50, 110, 45);
+        noRekamMedisLabel.setBounds(10, 45, 110, 45);
         this.add(noRekamMedisLabel);
        
         noRekamMedisText = new JTextField();
         noRekamMedisText.setBounds(132, 55, 130, 20);
         this.add(noRekamMedisText);
+        noRekamMedisText.addActionListener(this);
         
-//         AlamatLabel = new JLabel("Alamat ");
-//        AlamatLabel.setBounds(10, 60, 70, 55);
-//        this.add(AlamatLabel);
-//        
-//        Alamattext = new JTextField();
-//        Alamattext.setBounds(130, 70, 140, 65);
-//        this.add(Alamattext);
-    }
+        
+        AlamatLabel = new JLabel("Alamat");
+        AlamatLabel.setBounds (10,60,100,65);
+        this.add(AlamatLabel);
+        
+        Alamattext = new JTextField();
+        Alamattext.getText();
+        Alamattext.setBounds(132,80,130,20);
+        this.add(Alamattext);
+        
+        
+        
+        saveButton = new JButton("SIMPAN");
+        saveButton.setBounds (100,180,100,30);
+        this.add(saveButton);
+        
+   
+}
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == noRekamMedisText) {
+            namaText.setText(Pasien.cariPasien(noRekamMedisText.getText()).getNama());
+            Alamattext.setText(Pasien.cariPasien(noRekamMedisText.getText()).getAlamat());
+        }
+        
+    }
 }

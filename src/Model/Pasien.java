@@ -1,7 +1,8 @@
-
-package Modal;
+package Model;
 
 // @author FransiskaAW
+import java.util.ArrayList;
+
 /* program pada kelas ini digunakan untuk memasukan , memproses dan mengirim nilai balikan berupa
 data Pasien. data tersebut berupa nomer rekam medis , nama , alamat , tempat lahir , tanggal lahir
 bulan lahir , dan tahun lahir dari Pasien.
@@ -15,19 +16,49 @@ public class Pasien {
     private int tanggalLahir; //mendeklarasikan atribut tanggallahir bertipe integer dalam bentuk private
     private int bulanLahir; //mendeklarasikan atribut bulanlahir bertipe integer dalam bentuk private
     private int tahunLahir; //mendeklarasikan atribut tahunlahir bertipe integer dalam bentuk private
+    public static ArrayList<Pasien> daftarPasienKlinik = new ArrayList<>();
 
-    public void setNoRekamMedis(String noRekamMedis) throws NumberFormatException {
-        // method ini digunakan untuk memproses nomer rekam medis yang dilakukan selama nomer rekam medis lebih dari atau sama dengan 6
-        if (noRekamMedis.toCharArray().length >= 6) {
-            this.noRekamMedis = noRekamMedis;
-        } else {
-            throw new NumberFormatException(" Nomer Rekam Medis Anda Salah");
+    public Pasien(String nama, String alamat, String tempatLahir, int tanggalLahir, int bulanLahir, int tahunLahir, String noRekamMedis) {//menambahkan konstruktor, Konsktruktor adalah method yang memiliki nama yang sama dengan nama kelas
+
+        this.nama = nama;
+        this.alamat = alamat;
+        this.tempatLahir = tempatLahir;
+        this.tanggalLahir = tanggalLahir;
+        this.bulanLahir = bulanLahir;
+        this.tahunLahir = tahunLahir;
+        this.noRekamMedis = noRekamMedis;
+    }
+
+    
+    public static void tambahPasienBaru(Pasien pasien) {
+      daftarPasienKlinik.add(pasien);
+    }
+    
+    public static Pasien cariPasien(String norekam) {
+        for (int i = 0; i < daftarPasienKlinik.size(); i++) {
+            if (norekam == null ? daftarPasienKlinik.get(i).getNoRekamMedis() == null
+                    : norekam.equals(daftarPasienKlinik.get(i).getNoRekamMedis())) {
+                return daftarPasienKlinik.get(i);
+            }
         }
+        //Jika data tidak ditemukan maka akan direturn null
+        return null;
+    }
+
+    public Pasien() {
+        
+    }
+
+    public void setNoRekamMedis(String noRekamMedis)  {
+        // method ini digunakan untuk memproses nomer rekam medis yang dilakukan selama nomer rekam medis lebih dari atau sama dengan 6
+       
+            this.noRekamMedis = noRekamMedis;
+        
 
     }
 
     public String getNoRekamMedis() {
-         // method untuk mengirim nilai balikan berupa noRekamMedis
+        // method untuk mengirim nilai balikan berupa noRekamMedis
         return noRekamMedis;
     }
 
@@ -37,7 +68,7 @@ public class Pasien {
     }
 
     public String getNama() {
-         // method untuk mengirim nilai balikan berupa atribut nama
+        // method untuk mengirim nilai balikan berupa atribut nama
         return nama;
     }
 
@@ -47,7 +78,7 @@ public class Pasien {
     }
 
     public String getAlamat() {
-         // method untuk mengirim nilai balikan alamat
+        // method untuk mengirim nilai balikan alamat
         return alamat;
     }
 
@@ -57,7 +88,7 @@ public class Pasien {
     }
 
     public String getTempatLahir() {
-         // method untuk mengirim nilai balikan tempatlahir
+        // method untuk mengirim nilai balikan tempatlahir
         return tempatLahir;
     }
 

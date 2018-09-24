@@ -1,12 +1,12 @@
 
-package Modal;
+package Model;
 
 // @author FransiskaAW
 /* program pada kelas ini digunakan untuk menyimpan dan memproses data antrian pasien.
 data tersebut berupa tanggal antrian , bulan antrian , tahuin antrian , klinik dan daftar pasien.
 */
  
-public class AntrianPasien extends Pasien { // Kelas Antrian Pasien adalah turunan dari kelas Pasien.
+public class AntrianPasien { // Kelas Antrian Pasien adalah turunan dari kelas Pasien.
     private int tanggalantrian; //mendeklarasikan atribut tanggalantrian bertipe integer dalam bentuk private
     private int bulanantrian; //mendeklarasikan atribut bulanantrian bertipe integer dalam bentuk private
     private int tahunantrian; //mendeklarasikan atribut tahunantrian bertipe integer dalam bentuk private
