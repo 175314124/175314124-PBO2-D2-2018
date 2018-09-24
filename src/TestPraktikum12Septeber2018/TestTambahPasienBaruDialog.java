@@ -5,7 +5,8 @@
  */
 package TestPraktikum12Septeber2018;
 
-import view.TambahAntrianDialog;
+
+import view.TambahPasienBaruDialog;
 
 /**
  *
@@ -14,7 +15,7 @@ import view.TambahAntrianDialog;
 public class TestTambahPasienBaruDialog {
 
     public static void main(String[] args) {
-        TambahAntrianDialog test = new TambahAntrianDialog();
+        TambahPasienBaruDialog  test = new TambahPasienBaruDialog ();
         test.setSize(500, 400);
         test.setVisible(true);
     }
