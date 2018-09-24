@@ -12,9 +12,11 @@ import view.MainFrame;
  * @author kris
  */
     public class TestMainFrame {
+        
     public static void main(String[] args) {
         MainFrame test = new MainFrame();
         test.setSize(300, 400);
         test.setVisible(true);
+        System.out.println("");
     }
 }
