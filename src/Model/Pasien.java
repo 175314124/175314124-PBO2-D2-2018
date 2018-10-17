@@ -1,7 +1,13 @@
 package Model;
 
 // @author FransiskaAW
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /* program pada kelas ini digunakan untuk memasukan , memproses dan mengirim nilai balikan berupa
 data Pasien. data tersebut berupa nomer rekam medis , nama , alamat , tempat lahir , tanggal lahir
@@ -9,13 +15,20 @@ bulan lahir , dan tahun lahir dari Pasien.
  */
 public class Pasien {
 
-    private String noRekamMedis; //mendeklarasikan atribut noRekamMedis bertipe String dalam bentuk private
-    private String nama; //mendeklarasikan atribut nama bertipe String dalam bentuk private
-    private String alamat; //mendeklarasikan atribut alamat bertipe String dalam bentuk private
-    private String tempatLahir; //mendeklarasikan atribut tempatlahir bertipe String dalam bentuk private
-    private int tanggalLahir; //mendeklarasikan atribut tanggallahir bertipe integer dalam bentuk private
-    private int bulanLahir; //mendeklarasikan atribut bulanlahir bertipe integer dalam bentuk private
-    private int tahunLahir; //mendeklarasikan atribut tahunlahir bertipe integer dalam bentuk private
+    private String noRekamMedis;
+//mendeklarasikan atribut noRekamMedis bertipe String dalam bentuk private
+    private String nama;
+    //mendeklarasikan atribut nama bertipe String dalam bentuk private
+    private String alamat;
+    //mendeklarasikan atribut alamat bertipe String dalam bentuk private
+    private String tempatLahir;
+    //mendeklarasikan atribut tempatlahir bertipe String dalam bentuk private
+    private int tanggalLahir;
+//mendeklarasikan atribut tanggallahir bertipe integer dalam bentuk private
+    private int bulanLahir;
+    //mendeklarasikan atribut bulanlahir bertipe integer dalam bentuk private
+    private int tahunLahir;
+//mendeklarasikan atribut tahunlahir bertipe integer dalam bentuk private
     public static ArrayList<Pasien> daftarPasienKlinik = new ArrayList<>();
 
     public Pasien(String nama, String alamat, String tempatLahir, int tanggalLahir, int bulanLahir, int tahunLahir, String noRekamMedis) {//menambahkan konstruktor, Konsktruktor adalah method yang memiliki nama yang sama dengan nama kelas
@@ -29,11 +42,45 @@ public class Pasien {
         this.noRekamMedis = noRekamMedis;
     }
 
-    
-    public static void tambahPasienBaru(Pasien pasien) {
-      daftarPasienKlinik.add(pasien);
+    public static void bacaDaftarPasien(File file) {
+
     }
-    
+
+    public static Object getDaftarPasien() {
+
+        return null;
+
+    }
+
+    public static void simpanDaftarPasien(File file) {
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(file, false);
+            for (int i = 0; i < daftarPasienKlinik.size(); i++) {
+                String data = daftarPasienKlinik.get(i).toString();
+                fos.write(data.getBytes());
+
+            }
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+
+        } finally {
+            try {
+                fos.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+
+            }
+
+        }
+    }
+
+    public static void tambahPasienBaru(Pasien pasien) {
+        daftarPasienKlinik.add(pasien);
+    }
+
     public static Pasien cariPasien(String norekam) {
         for (int i = 0; i < daftarPasienKlinik.size(); i++) {
             if (norekam == null ? daftarPasienKlinik.get(i).getNoRekamMedis() == null
@@ -46,14 +93,13 @@ public class Pasien {
     }
 
     public Pasien() {
-        
+
     }
 
-    public void setNoRekamMedis(String noRekamMedis)  {
+    public void setNoRekamMedis(String noRekamMedis) {
         // method ini digunakan untuk memproses nomer rekam medis yang dilakukan selama nomer rekam medis lebih dari atau sama dengan 6
-       
-            this.noRekamMedis = noRekamMedis;
-        
+
+        this.noRekamMedis = noRekamMedis;
 
     }
 
@@ -140,4 +186,8 @@ public class Pasien {
         //
     }
 
+    @Override
+    public String toString() {
+        return nama + "\t" + alamat + "\n";
+    }
 }
