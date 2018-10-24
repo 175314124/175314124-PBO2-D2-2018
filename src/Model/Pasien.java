@@ -2,6 +2,7 @@ package Model;
 
 // @author FransiskaAW
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -43,13 +44,57 @@ public class Pasien {
     }
 
     public static void bacaDaftarPasien(File file) {
+        FileInputStream fis = null;
+        try {
 
-    }
-
-    public static Object getDaftarPasien() {
-
-        return null;
-
+            String hasilBaca = "";
+            fis = new FileInputStream(file);
+            int dataInt;
+            boolean noRM = false;
+            boolean nama = false;
+            boolean alamat = false;
+            String n;
+            String RM;
+            String ala;
+            Pasien temp = new Pasien();
+            while ((dataInt = fis.read()) != -1) {
+                if ((char) dataInt != '\n') {
+                    if ((char) dataInt != '\t' && noRM == false && nama == false && alamat == false) {
+                        hasilBaca = hasilBaca + (char) dataInt;
+                    } else if ((char) dataInt == '\t' && noRM == false && nama == false && alamat == false) {
+                        noRM = true;
+                        temp.setNoRekamMedis(hasilBaca);
+                        hasilBaca = "";
+                    } else if ((char) dataInt != '\t' && noRM == true && nama == false && alamat == false) {
+                        hasilBaca = hasilBaca + (char) dataInt;
+                    } else if ((char) dataInt == '\t' && noRM == true && nama == false && alamat == false) {
+                        nama = true;
+                        temp.setNama(hasilBaca);
+                        hasilBaca = "";
+                    } else if ((char) dataInt != '\t' && noRM == true && nama == true && alamat == false) {
+                        hasilBaca = hasilBaca + (char) dataInt;
+                    } else if ((char) dataInt == '\t' && noRM == true && nama == true && alamat == false) {
+                        alamat = true;
+                        temp.setAlamat(hasilBaca);
+                        hasilBaca = "";
+                    }
+                } else {
+                    alamat = true;
+                    temp.setAlamat(hasilBaca);
+                    hasilBaca = "";
+                    tambahPasienBaru(temp);
+                    nama = false;
+                    noRM = false;
+                    alamat = false;
+                    temp = new Pasien();
+                }
+            }
+            fis.close();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public static void simpanDaftarPasien(File file) {
