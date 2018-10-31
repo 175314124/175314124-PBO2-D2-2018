@@ -5,6 +5,7 @@
  */
 package view;
 import Model.Pasien;
+import Model.RumahSakit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -44,7 +45,7 @@ public class TambahPasienBaruDialog extends JDialog implements ActionListener {
         "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994",
         "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", };
 
-   
+ private JButton simpanbutton;
 
 
     public TambahPasienBaruDialog() {
@@ -128,6 +129,7 @@ public class TambahPasienBaruDialog extends JDialog implements ActionListener {
         this.add(saveButton);
         saveButton.addActionListener(this);
 
+               
     }
 
     @Override
@@ -137,7 +139,7 @@ public class TambahPasienBaruDialog extends JDialog implements ActionListener {
             daftar.setNama(namaText.getText());
             daftar.setAlamat(AlamatText.getText());
             daftar.setNoRekamMedis(noRekamMedisText.getText());
-            Pasien.tambahPasienBaru(daftar);
+            RumahSakit.tambahPasienBaru(daftar);
             this.dispose();
         }
     }

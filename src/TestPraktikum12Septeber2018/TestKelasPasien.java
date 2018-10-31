@@ -36,14 +36,15 @@ public class TestKelasPasien {
                 "19990110" // NIK
         );
         
-        Pasien.tambahPasienBaru(test);
-        Pasien.tambahPasienBaru(test1);
-        
-        for (int i = 0; i < Pasien.daftarPasienKlinik.size(); i++) {
-            System.out.println("Nama : "+Pasien.daftarPasienKlinik.get(i).getNama());
-        }
-        
-        Pasien cari = Pasien.cariPasien("19990110");
-        System.out.println("Nama Hasil Pencarian = "+cari.getNama());
-    }
+//        Pasien.tambahPasienBaru(test);
+//        Pasien.tambahPasienBaru(test1);
+//        
+//        for (int i = 0; i < Pasien.daftarPasienKlinik.size(); i++) {
+//            System.out.println("Nama : "+Pasien.daftarPasienKlinik.get(i).getNama());
+//        }
+//        
+//        Pasien cari = Pasien.cariPasien("19990110");
+//        System.out.println("Nama Hasil Pencarian = "+cari.getNama());
+//    }
+}
 }

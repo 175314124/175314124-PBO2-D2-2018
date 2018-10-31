@@ -74,5 +74,9 @@ public class AntrianPasien { // Kelas Antrian Pasien adalah turunan dari kelas P
          // method untuk memasukkan nilai  daftarpasien
         this.daftarpasien = daftarpasien;
     }
+
+    int getTanggalantrian() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

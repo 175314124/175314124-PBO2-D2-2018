@@ -6,6 +6,7 @@
 package view;
 
 import Model.Pasien;
+import Model.RumahSakit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
@@ -76,8 +77,8 @@ private JLabel judulLabel;
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == noRekamMedisText) {
-            namaText.setText(Pasien.cariPasien(noRekamMedisText.getText()).getNama());
-            Alamattext.setText(Pasien.cariPasien(noRekamMedisText.getText()).getAlamat());
+            namaText.setText(RumahSakit.cariPasien(noRekamMedisText.getText()).getNama());
+            Alamattext.setText(RumahSakit.cariPasien(noRekamMedisText.getText()).getAlamat());
         }
         
     }

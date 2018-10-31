@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -14,7 +15,7 @@ import java.util.logging.Logger;
 data Pasien. data tersebut berupa nomer rekam medis , nama , alamat , tempat lahir , tanggal lahir
 bulan lahir , dan tahun lahir dari Pasien.
  */
-public class Pasien {
+public class Pasien implements Serializable{
 
     private String noRekamMedis;
 //mendeklarasikan atribut noRekamMedis bertipe String dalam bentuk private
@@ -43,100 +44,7 @@ public class Pasien {
         this.noRekamMedis = noRekamMedis;
     }
 
-    public static void bacaDaftarPasien(File file) {
-        FileInputStream fis = null;
-        try {
-
-            String hasilBaca = "";
-            fis = new FileInputStream(file);
-            int dataInt;
-            boolean noRM = false;
-            boolean nama = false;
-            boolean alamat = false;
-            String n;
-            String RM;
-            String ala;
-            Pasien temp = new Pasien();
-            while ((dataInt = fis.read()) != -1) {
-                if ((char) dataInt != '\n') {
-                    if ((char) dataInt != '\t' && noRM == false && nama == false && alamat == false) {
-                        hasilBaca = hasilBaca + (char) dataInt;
-                    } else if ((char) dataInt == '\t' && noRM == false && nama == false && alamat == false) {
-                        noRM = true;
-                        temp.setNoRekamMedis(hasilBaca);
-                        hasilBaca = "";
-                    } else if ((char) dataInt != '\t' && noRM == true && nama == false && alamat == false) {
-                        hasilBaca = hasilBaca + (char) dataInt;
-                    } else if ((char) dataInt == '\t' && noRM == true && nama == false && alamat == false) {
-                        nama = true;
-                        temp.setNama(hasilBaca);
-                        hasilBaca = "";
-                    } else if ((char) dataInt != '\t' && noRM == true && nama == true && alamat == false) {
-                        hasilBaca = hasilBaca + (char) dataInt;
-                    } else if ((char) dataInt == '\t' && noRM == true && nama == true && alamat == false) {
-                        alamat = true;
-                        temp.setAlamat(hasilBaca);
-                        hasilBaca = "";
-                    }
-                } else {
-                    alamat = true;
-                    temp.setAlamat(hasilBaca);
-                    hasilBaca = "";
-                    tambahPasienBaru(temp);
-                    nama = false;
-                    noRM = false;
-                    alamat = false;
-                    temp = new Pasien();
-                }
-            }
-            fis.close();
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public static void simpanDaftarPasien(File file) {
-        FileOutputStream fos = null;
-        try {
-            fos = new FileOutputStream(file, false);
-            for (int i = 0; i < daftarPasienKlinik.size(); i++) {
-                String data = daftarPasienKlinik.get(i).toString();
-                fos.write(data.getBytes());
-
-            }
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
-
-        } finally {
-            try {
-                fos.close();
-            } catch (IOException ex) {
-                Logger.getLogger(Pasien.class.getName()).log(Level.SEVERE, null, ex);
-
-            }
-
-        }
-    }
-
-    public static void tambahPasienBaru(Pasien pasien) {
-        daftarPasienKlinik.add(pasien);
-    }
-
-    public static Pasien cariPasien(String norekam) {
-        for (int i = 0; i < daftarPasienKlinik.size(); i++) {
-            if (norekam == null ? daftarPasienKlinik.get(i).getNoRekamMedis() == null
-                    : norekam.equals(daftarPasienKlinik.get(i).getNoRekamMedis())) {
-                return daftarPasienKlinik.get(i);
-            }
-        }
-        //Jika data tidak ditemukan maka akan direturn null
-        return null;
-    }
-
+   
     public Pasien() {
 
     }
